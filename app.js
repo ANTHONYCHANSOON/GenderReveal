@@ -9,7 +9,7 @@ const ejs = require("ejs");
 // var name = namer.next();
 // console.log(name);
 
-//app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
@@ -28,14 +28,13 @@ app.get("/", function (req, res) {
             for (let i = 0; i < parseData.length; i++) {
                 girlName.push(parseData[i]);
             }
-            //console.log(girlName);
+            console.log(girlName);
 
-            res.write("<h1>GIRL</h1>");
+            // res.write("<h1>GIRL</h1>");
 
-            for (let i = 0; i < girlName.length; i++) {
-                res.write("<li>" + girlName[i] + "</li>"
-                )
-            }
+            // for (let i = 0; i < girlName.length; i++) {
+            //     res.write("<li>" + girlName[i] + "</li>")
+            // }
 
             http.get("http://names.drycodes.com/10?nameOptions=boy_names", function (response) {
                 //console.log("boy's status = " + response.statusCode);
@@ -47,15 +46,18 @@ app.get("/", function (req, res) {
                     for (let i = 0; i < parseData.length; i++) {
                         boyName.push(parseData[i]);
                     }
-                    //console.log(boyName);
+                    console.log(boyName);
 
-                    res.write("<h1>BOY</h1>");
+                    // res.write("<h1>BOY</h1>");
 
-                    for (let i = 0; i < boyName.length; i++) {
-                        res.write("<li>" + boyName[i] + "</li>"
-                        )
-                    }
-                    res.send();
+                    // for (let i = 0; i < boyName.length; i++) {
+                    //     res.write("<li>" + boyName[i] + "</li>")
+                    // }
+                    res.render("home", 
+                    {
+                        listofboy : boyName,
+                        listofgirl : girlName
+                    });
                 })
             })
         })
