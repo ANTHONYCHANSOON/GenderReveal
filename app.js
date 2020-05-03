@@ -12,7 +12,7 @@ const ejs = require("ejs");
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
-app.get("/", function (req, res) {
+app.get("/names", function (req, res) {
     // http://names.drycodes.com/10
     // https.get("")
     let girlName = [];
@@ -28,7 +28,7 @@ app.get("/", function (req, res) {
             for (let i = 0; i < parseData.length; i++) {
                 girlName.push(parseData[i]);
             }
-            console.log(girlName);
+            //console.log(girlName);
 
             // res.write("<h1>GIRL</h1>");
 
@@ -46,14 +46,14 @@ app.get("/", function (req, res) {
                     for (let i = 0; i < parseData.length; i++) {
                         boyName.push(parseData[i]);
                     }
-                    console.log(boyName);
+                    //console.log(boyName);
 
                     // res.write("<h1>BOY</h1>");
 
                     // for (let i = 0; i < boyName.length; i++) {
                     //     res.write("<li>" + boyName[i] + "</li>")
                     // }
-                    res.render("home", 
+                    res.render("names", 
                     {
                         listofboy : boyName,
                         listofgirl : girlName
