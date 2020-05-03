@@ -40,26 +40,28 @@ app.get("/", function (req, res) {
 })
 
 app.post("/", function (req, res) {
-    console.log(req.body);
+    //console.log(req.body);
 
-    let voterName = req.body.voterName;
-    let voterVote = 1;
-
-    if (req.body.vote === "true") {
-        voterVote = 1;
+    if (req.body.voterName === "") {
+        console.log("User didnt put Name")
     } else {
-        voterVote = 0;
-    }
 
-    connection.query("insert into boygirl (name, boy) values (?, ?)", [voterName, voterVote], function (err, result) {
-        if (err) {
-            console.error(err)
+        let voterName = req.body.voterName;
+        let voterVote = 1;
+
+        if (req.body.vote === "true") {
+            voterVote = 1;
+        } else {
+            voterVote = 0;
         }
 
-        res.redirect("/");
-    })
-
-
+        connection.query("insert into boygirl (name, boy) values (?, ?)", [voterName, voterVote], function (err, result) {
+            if (err) {
+                console.error(err)
+            }
+            res.redirect("/");
+        })
+    }
 })
 
 app.get("/names", function (req, res) {

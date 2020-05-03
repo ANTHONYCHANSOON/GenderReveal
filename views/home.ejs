@@ -13,13 +13,13 @@
 <body>
     <div>
         <form action="/" method="post">
-            <input type="text" name="voterName" id="" placeholder="Name" autocomplete="off">
-            <input type="radio" name="vote" value="true" id="">
+            <input type="text" name="voterName" id="textbox1" placeholder="Name" autocomplete="off">
+            <input type="radio" name="vote" value="true" id="" checked>
             <label>Boy</label>
             <input type="radio" name="vote" value="false" id="">
             <label>Girl</label>
             <br>
-            <button type="submit">Submit</button>
+            <button type="submit" onclick="validateTextBox()">Submit</button>
         </form>
     </div>
 
@@ -52,7 +52,16 @@
 
     </div>
 
+    <script>
 
+        function validateTextBox() {
+            var x = document.getElementById('textbox1').value;
+            if (x === "") {
+                console.log(x)
+                alert("name please");
+            }
+        }
+    </script>
 
 </body>
 
