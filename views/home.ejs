@@ -8,48 +8,53 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div>
-        <form action="/" method="post">
-            <input type="text" name="voterName" id="textbox1" placeholder="Name" autocomplete="off">
-            <input type="radio" name="vote" value="true" id="" checked>
-            <label>Boy</label>
-            <input type="radio" name="vote" value="false" id="">
-            <label>Girl</label>
+
+    <div class="jumbotron jumbotron-fluid header">
+        <div class="container">
+            <h1 class="display-4">AK Gender Reveal</h1>
+            <form action="/" method="post">
+                <input type="text" name="voterName" id="textbox1" placeholder="Name" autocomplete="off">
+                <input type="radio" name="vote" value="true" id="" checked>
+                <label>Boy</label>
+                <input type="radio" name="vote" value="false" id="">
+                <label>Girl</label>
+                <button type="submit" onclick="validateTextBox()">Submit</button>
+            </form>
             <br>
-            <button type="submit" onclick="validateTextBox()">Submit</button>
-        </form>
-    </div>
+            <div class="container">
 
-    <div class="container">
-
-        <div class="row">
+                <div class="row">
 
 
-            <div class="col">
-                <h1>BOY</h1>
+                    <div class="col alert alert-info">
+                        <h1>BOY - <%= boycount %></h1>
 
-                <% for(let i =0; i < dbdata.length; i++) { %>
-                <%    if(dbdata[i].boy === 1) {%>
-                <p><%= dbdata[i].name %></p>
-                <%     }%>
-                <% }%>
+                        <% for(let i =0; i < dbdata.length; i++) { %>
+                        <%    if(dbdata[i].boy === 1) {%>
+                        <p><%= dbdata[i].name %></p>
+                        <%     }%>
+                        <% }%>
+
+                    </div>
+
+
+                    <div class="col alert alert-danger">
+                        <h1>GIRL - <%= girlcount %></h1>
+                        <% for(let i =0; i < dbdata.length; i++) { %>
+                        <%    if(dbdata[i].boy === 0) {%>
+                        <p><%= dbdata[i].name %></p>
+                        <%     }%>
+                        <% }%>
+                    </div>
+                </div>
 
             </div>
 
-
-            <div class="col">
-                <h1>GIRL</h1>
-                <% for(let i =0; i < dbdata.length; i++) { %>
-                <%    if(dbdata[i].boy === 0) {%>
-                <p><%= dbdata[i].name %></p>
-                <%     }%>
-                <% }%>
-            </div>
         </div>
-
     </div>
 
     <script>

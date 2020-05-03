@@ -31,10 +31,25 @@ connection.connect(function (err) {
 })
 
 app.get("/", function (req, res) {
+    
+    let boycount = 0;
+    let girlcount = 0
+
     connection.query("select * from boygirl", function (err, data) {
         console.log(data);
+
+        for(let i = 0; i < data.length; i++) {
+            if(data[i].boy === 1) {
+                boycount = boycount + 1;
+            } else {
+                girlcount = girlcount + 1;
+            }
+        }
+
         res.render("home", {
-            dbdata: data
+            dbdata: data,
+            boycount : boycount,
+            girlcount : girlcount
         })
     })
 })
