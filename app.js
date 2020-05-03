@@ -9,18 +9,17 @@ const ejs = require("ejs");
 // var name = namer.next();
 // console.log(name);
 
-app.set('view engine', 'ejs');
+//app.set('view engine', 'ejs');
 app.use(express.static("public"));
-
-let girlName = [];
-let boyName = []
 
 app.get("/", function (req, res) {
     // http://names.drycodes.com/10
     // https.get("")
-
+    let girlName = [];
+    let boyName = [];
+    
     http.get("http://names.drycodes.com/10?nameOptions=girl_names", function (response) {
-        console.log(response.statusCode);
+        //console.log("girls's status = " + response.statusCode);
         response.on("data", function(data){
             // console.log(data);
             let parseData = JSON.parse(data);
@@ -29,12 +28,20 @@ app.get("/", function (req, res) {
             for(let i = 0; i < parseData.length; i++) {
                 girlName.push(parseData[i]);
             }
-            console.log(girlName);
+            //console.log(girlName);
+
+            res.write("<h1>GIRL</h1>");
+
+            for(let i = 0; i < girlName.length; i++) {
+                res.write("<li>" + girlName[i] + "</li>"
+                )
+            }
+
         })
     })
 
     http.get("http://names.drycodes.com/10?nameOptions=boy_names", function (response) {
-        console.log(response.statusCode);
+        console.log("boy's status = " + response.statusCode);
         response.on("data", function(data){
             // console.log(data);
             let parseData = JSON.parse(data);
@@ -44,11 +51,19 @@ app.get("/", function (req, res) {
                 boyName.push(parseData[i]);
             }
             console.log(boyName);
+
+            res.write("<h1>BOY</h1>");
+
+            for(let i = 0; i < girlName.length; i++) {
+                res.write("<li>" + girlName[i] + "</li>"
+                )
+            }
         })
     })
 
 
-    res.send("server good");
+    // res.send();
+    
     // res.sendFile(__dirname + '/index.html');
 
 
