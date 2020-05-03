@@ -1,76 +1,90 @@
 const express = require("express");
 const app = express();
-const axios = require("axios");
 const http = require("http");
-const ejs = require("ejs");
-//var NameGenerator = require('name-generator');
-
-// var namer = new NameGenerator();
-// var name = namer.next();
-// console.log(name);
+const mysql = require("mysql");
+const bodyparser = require("body-parser");
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
+app.use(bodyparser.urlencoded({ extended: true }));
+
+var connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "asdfasdf",
+    database: "boygirl"
+})
+
+connection.connect(function (err) {
+    if (err) {
+        console.error(err.stack);
+        return
+    }
+    console.log("connected as id " + connection.threadId);
+})
+
+app.get("/", function(req, res) {
+    connection.query("select * from boygirl", function (err, data) {
+        console.log(data);
+        res.render("home", {
+            dbdata : data
+        })
+    })
+})
+
+app.post("/", function(req,res){
+    console.log(req.body);
+
+    let voterName = req.body.voterName;
+    let voterVote = 1;
+
+    if(req.body.vote === "true") {
+        voterVote = 1;
+    } else {
+        voterVote = 0;
+    }
+
+    connection.query("insert into boygirl (name, boy) values (?, ?)", [voterName, voterVote], function(err, result){
+        if(err) {
+            console.error(err)
+        }
+
+        res.redirect("/");
+    })
+    
+
+})
 
 app.get("/names", function (req, res) {
-    // http://names.drycodes.com/10
-    // https.get("")
     let girlName = [];
     let boyName = [];
 
     http.get("http://names.drycodes.com/10?nameOptions=girl_names", function (response) {
-        //console.log("girls's status = " + response.statusCode);
         response.on("data", function (data) {
-            // console.log(data);
             let parseData = JSON.parse(data);
-            //console.log(parseData);
 
             for (let i = 0; i < parseData.length; i++) {
                 girlName.push(parseData[i]);
             }
-            //console.log(girlName);
-
-            // res.write("<h1>GIRL</h1>");
-
-            // for (let i = 0; i < girlName.length; i++) {
-            //     res.write("<li>" + girlName[i] + "</li>")
-            // }
 
             http.get("http://names.drycodes.com/10?nameOptions=boy_names", function (response) {
-                //console.log("boy's status = " + response.statusCode);
                 response.on("data", function (data) {
-                    // console.log(data);
                     let parseData = JSON.parse(data);
-                    //console.log(parseData);
 
                     for (let i = 0; i < parseData.length; i++) {
                         boyName.push(parseData[i]);
                     }
-                    //console.log(boyName);
 
-                    // res.write("<h1>BOY</h1>");
-
-                    // for (let i = 0; i < boyName.length; i++) {
-                    //     res.write("<li>" + boyName[i] + "</li>")
-                    // }
-                    res.render("names", 
-                    {
-                        listofboy : boyName,
-                        listofgirl : girlName
-                    });
+                    res.render("names",
+                        {
+                            listofboy: boyName,
+                            listofgirl: girlName
+                        });
                 })
             })
         })
     })
-
-
-
-
-    
-
-    // res.sendFile(__dirname + '/index.html');
-
-
 })
 
 app.listen(process.env.PORT || 3000, () => {
