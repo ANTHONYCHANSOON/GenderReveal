@@ -8,13 +8,19 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyparser.urlencoded({ extended: true }));
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "asdfasdf",
-    database: "boygirl"
-})
+
+if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL)
+} else {
+
+    var connection = mysql.createConnection({
+        host: "localhost",
+        port: 3306,
+        user: "root",
+        password: "asdfasdf",
+        database: "boygirl"
+    })
+}
 
 connection.connect(function (err) {
     if (err) {
@@ -24,35 +30,35 @@ connection.connect(function (err) {
     console.log("connected as id " + connection.threadId);
 })
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
     connection.query("select * from boygirl", function (err, data) {
         console.log(data);
         res.render("home", {
-            dbdata : data
+            dbdata: data
         })
     })
 })
 
-app.post("/", function(req,res){
+app.post("/", function (req, res) {
     console.log(req.body);
 
     let voterName = req.body.voterName;
     let voterVote = 1;
 
-    if(req.body.vote === "true") {
+    if (req.body.vote === "true") {
         voterVote = 1;
     } else {
         voterVote = 0;
     }
 
-    connection.query("insert into boygirl (name, boy) values (?, ?)", [voterName, voterVote], function(err, result){
-        if(err) {
+    connection.query("insert into boygirl (name, boy) values (?, ?)", [voterName, voterVote], function (err, result) {
+        if (err) {
             console.error(err)
         }
 
         res.redirect("/");
     })
-    
+
 
 })
 
