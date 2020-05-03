@@ -1,0 +1,25 @@
+{
+  "name": "namegenerator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ANTHONYCHANSOON/NameGenerator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ANTHONYCHANSOON/NameGenerator/issues"
+  },
+  "homepage": "https://github.com/ANTHONYCHANSOON/NameGenerator#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "name-generator": "^0.1.1"
+  }
+}
