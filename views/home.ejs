@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/index.js"></script>
 </head>
 
 <body>
@@ -17,12 +18,13 @@
         <div class="container">
             <h1 class="display-4">AK Gender Reveal</h1>
             <form action="/" method="post">
-                <input type="text" name="voterName" id="textbox1" placeholder="Name" autocomplete="off">
+                <input type="text" name="voterName" id="textbox1" class = "perfect1" placeholder="Your name" autocomplete="off">
                 <input type="radio" name="vote" value="true" id="" checked>
                 <label>Boy</label>
                 <input type="radio" name="vote" value="false" id="">
                 <label>Girl</label>
                 <button type="submit" onclick="validateTextBox()">Submit</button>
+                <p class = "perfect2 needNameDefault">Please input your name</p>
             </form>
             <br>
             <div class="container">
@@ -55,22 +57,9 @@
             </div>
 
         </div>
-        <!-- <div class = "footer">
-            <p class="mt-5 mb-3 text-muted">&copy; Ant</p>
-        </div> -->
     </div>
     
-    <script>
-
-        function validateTextBox() {
-            var x = document.getElementById('textbox1').value;
-            if (x === "") {
-                console.log(x)
-                alert("name please");
-            }
-        }
-    </script>
-
+    
 </body>
 
 </html>

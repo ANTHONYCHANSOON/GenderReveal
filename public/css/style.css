@@ -11,3 +11,15 @@
     color: white;
     text-align: center;
   }
+
+  .needName {
+      color: red;
+  }
+
+  .needNameDefault {
+    visibility: hidden;
+    font-weight: bold;
+}
+  .needNameTextbox {
+      border-color: red;
+  }
