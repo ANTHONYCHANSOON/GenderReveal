@@ -5,17 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Winner</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/winner.css">
+
 </head>
 
 <body>
     <div class="wrapper">
-        <form action="/" method="get">
-            <button type="submit" class="btn btn-secondary btn-lg btn-block"><%= winner %></button>
-        </form>
+        <div class="pyro">
+            <div class="before"></div>
+            <div class="winner">
+                <h1>The winner is :</h1>
+            </div>
+            <form action="/" method="get">
+                <button type="submit" class="btn btn-secondary btn-lg btn-block"><%= winner %></button>
+            </form>
+        </div>
+        <div class="after"></div>
     </div>
+    
 </body>
+
 
 </html>
