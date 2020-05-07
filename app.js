@@ -31,15 +31,15 @@ connection.connect(function (err) {
 })
 
 app.get("/", function (req, res) {
-    
+
     let boycount = 0;
     let girlcount = 0
 
     connection.query("select * from boygirl", function (err, data) {
         console.log(data);
 
-        for(let i = 0; i < data.length; i++) {
-            if(data[i].boy === 1) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].boy === 1) {
                 boycount = boycount + 1;
             } else {
                 girlcount = girlcount + 1;
@@ -48,8 +48,8 @@ app.get("/", function (req, res) {
 
         res.render("home", {
             dbdata: data,
-            boycount : boycount,
-            girlcount : girlcount
+            boycount: boycount,
+            girlcount: girlcount
         })
     })
 })
@@ -77,6 +77,38 @@ app.post("/", function (req, res) {
             res.redirect("/");
         })
     }
+})
+
+app.post("/boywinner", (req, res) => {
+    console.log(req.body);
+    connection.query("select * from boygirl where boy = true", function (err, data) {
+        console.log(data.length);
+
+        let winner = 0;
+        winner = Math.floor((Math.random() * data.length) + 1);
+        console.log(data[winner].name);
+
+        res.render("winner", {
+            winner: data[winner].name
+        })
+        //res.send("<h1>" + data[winner].name + "</h1>");
+    })
+})
+
+app.post("/girlwinner", (req, res) => {
+    console.log(req.body);
+    connection.query("select * from boygirl where boy = false", function (err, data) {
+        console.log(data.length);
+
+        let winner = 0;
+        winner = Math.floor((Math.random() * data.length) + 1);
+        console.log(data[winner].name);
+        
+        res.render("winner", {
+            winner: data[winner].name
+        })
+        // res.send("<h1>" + data[winner].name + "</h1>");
+    })
 })
 
 app.get("/names", function (req, res) {

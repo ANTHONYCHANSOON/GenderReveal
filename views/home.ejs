@@ -28,6 +28,7 @@
                 <p class="perfect2 needNameDefault">Please input your name</p>
             </form>
             <br>
+
             <div class="container">
 
                 <div class="row">
@@ -68,17 +69,38 @@
 
         <!-- Overlay content -->
         <div class="overlay-content">
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col">
+                        <form action="/boywinner" method="POST">
+                            <button class="btn btn-outline-primary" id="Boy" name="Boy" value="True">BOY</button>
+                        </form>
+                    </div>
+
+
+                    <div class="col">
+                        <form action="/girlwinner" method="POST">
+                            <button class="btn btn-outline-danger" id="Girl" name="Girl" value="False">Girl</button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
+
+        
+        <span> or </span>
+        
+
 
     </div>
 
     <!-- Use any element to open/show the overlay navigation menu -->
     <div class="raffleBtn">
-        <button class = "btn btn-outline-info" onclick="openNav()" >Raffle Time</button>
+        <button class="btn btn-outline-info" onclick="openNav()">Game</button>
     </div>
     <!-- <span onclick="openNav()">open</span> -->
 

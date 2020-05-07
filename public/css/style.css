@@ -30,7 +30,15 @@
   align-items: center;
   
 }
-
+.cong {
+  align-content: center;
+}
+.wrapper {
+  max-width: 500px;
+  margin: auto;
+  height: 500px;
+  padding-top: 200px;
+}
 
   /* The Overlay (background) */
 .overlay {
