@@ -21,6 +21,6 @@ Using - http://names.drycodes.com/
 * Heroku - Deployment
 * Express and Node.JS
 
-### Authors: 
+### Author(s): 
 * [Anthony-me)] (https://github.com/ANTHONYCHANSOON)
 
