@@ -12,7 +12,8 @@ Body-Parser
 
 ### Deployed Link
 https://polar-reef-73169.herokuapp.com/ <br />
-Name Generator using 3rd party Api - https://polar-reef-73169.herokuapp.com/names
+Name Generator using 3rd party Api - https://polar-reef-73169.herokuapp.com/names <br />
+Using - http://names.drycodes.com/
 
 ### Built With
 * EJS - Front-End Design
