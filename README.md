@@ -16,7 +16,7 @@ Name Generator using 3rd party Api - https://polar-reef-73169.herokuapp.com/name
 Using - http://names.drycodes.com/
 
 ### Built With
-* EJS - Front-End Design
+* EJS/ Bootstrap - Front-End
 * MySQL - Database
 * Heroku - Deployment
 * Express and Node.JS
